@@ -3,6 +3,7 @@ package kum.entity;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,8 @@ private Integer id;
 	@Lob
 	private String fullDescription;
 	
-	private String type;
+	@Enumerated
+	private Type type;
 	
 	private String phone;
 	
