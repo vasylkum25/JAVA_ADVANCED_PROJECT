@@ -26,6 +26,18 @@ public class OpenClose {
 	private List<Cafe> closedCafes = new ArrayList<>();
 	
 	private LocalTime time;
+	
+
+	public OpenClose() {
+	}
+	
+	
+
+	public OpenClose(LocalTime time) {
+		this.time = time;
+	}
+
+
 
 	public Integer getId() {
 		return id;
