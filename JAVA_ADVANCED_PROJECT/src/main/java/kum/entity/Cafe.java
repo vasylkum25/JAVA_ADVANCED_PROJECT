@@ -26,6 +26,28 @@ private Integer id;
 	private String name;
 	
 	private String photoUrl;
+
+	private int version;
+	
+	private String address;
+	
+	private String shortDescription;
+	
+	@Lob
+	private String fullDescription;
+	
+	@Enumerated
+	private Type type;
+	
+	@Column(length=13)
+	private String phone;
+	
+	private String email;
+	
+	@ManyToOne
+	private OpenClose open;
+	@ManyToOne
+	private OpenClose close;
 	
 	public Integer getId() {
 		return id;
@@ -105,26 +127,5 @@ private Integer id;
 	public void setClose(OpenClose close) {
 		this.close = close;
 	}
-	private int version;
-	
-	private String address;
-	
-	private String shortDescription;
-	
-	@Lob
-	private String fullDescription;
-	
-	@Enumerated
-	private Type type;
-	
-	@Column(length=13)
-	private String phone;
-	
-	private String email;
-	
-	@ManyToOne
-	private OpenClose open;
-	@ManyToOne
-	private OpenClose close;
 
 }
