@@ -1,5 +1,6 @@
 package kum.entity;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +22,10 @@ public class OpenClose {
 	
 	@OneToMany(mappedBy = "open")
 	private List<Cafe> openedCafes = new ArrayList<>();
-	@OneToMany(mappedBy = "open")
+	@OneToMany(mappedBy = "close")
 	private List<Cafe> closedCafes = new ArrayList<>();
 	
-	private String time;
+	private LocalTime time;
 
 	public Integer getId() {
 		return id;
@@ -34,11 +35,28 @@ public class OpenClose {
 		this.id = id;
 	}
 
-	public String getTime() {
+	public List<Cafe> getOpenedCafes() {
+		return openedCafes;
+	}
+
+	public void setOpenedCafes(List<Cafe> openedCafes) {
+		this.openedCafes = openedCafes;
+	}
+
+	public List<Cafe> getClosedCafes() {
+		return closedCafes;
+	}
+
+	public void setClosedCafes(List<Cafe> closedCafes) {
+		this.closedCafes = closedCafes;
+	}
+
+	public LocalTime getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
 	}
+
 }
