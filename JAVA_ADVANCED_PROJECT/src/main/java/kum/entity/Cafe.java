@@ -2,6 +2,7 @@ package kum.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -37,12 +38,13 @@ private Integer id;
 	@Enumerated
 	private Type type;
 	
+	@Column(length=13)
 	private String phone;
 	
 	private String email;
 	
-	private String open;
+	private OpenClose open;
 	
-	private String close;
+	private OpenClose close;
 
 }
