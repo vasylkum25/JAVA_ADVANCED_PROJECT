@@ -19,9 +19,9 @@ public class OpenClose {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "open")
 	private List<Cafe> openedCafes = new ArrayList<>();
-	@OneToMany
+	@OneToMany(mappedBy = "open")
 	private List<Cafe> closedCafes = new ArrayList<>();
 	
 	private String time;
