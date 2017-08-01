@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +19,10 @@ public class OpenClose {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@OneToMany
 	private List<Cafe> openedCafes = new ArrayList<>();
+	@OneToMany
+	private List<Cafe> closedCafes = new ArrayList<>();
 	
 	private String time;
 
