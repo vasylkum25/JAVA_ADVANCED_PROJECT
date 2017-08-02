@@ -16,10 +16,6 @@ import javax.persistence.Table;
 public class OpenClose {
 
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
 	@OneToMany(mappedBy = "open")
 	private List<Cafe> openedCafes = new ArrayList<>();
 	@OneToMany(mappedBy = "close")
@@ -35,16 +31,6 @@ public class OpenClose {
 
 	public OpenClose(LocalTime time) {
 		this.time = time;
-	}
-
-
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public List<Cafe> getOpenedCafes() {
