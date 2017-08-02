@@ -1,10 +1,13 @@
 package kum.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +25,11 @@ public class Meal extends AbstractEntity {
 	
 	private int version;
 	
-	private String cuisine;
+	@ManyToMany(fetch=FetchType.LAZY)
+	private Cuisine cuisine;
 	
 	private int weight;
 	
-	private List<String> ingredients;
+	private List<Ingredient> ingredients = new ArrayList<>();
 	
 }
