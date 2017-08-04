@@ -33,9 +33,31 @@ public class Meal extends AbstractEntity {
 	
 	@ManyToMany(fetch=FetchType.LAZY)
 	private List<Ingredient> ingredients = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "meals")
+	private List<Order> orders = new ArrayList<>();
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Cafe cafe; 
+	
 	public String getTitle() {
 		return title;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Cafe getCafe() {
+		return cafe;
+	}
+
+	public void setCafe(Cafe cafe) {
+		this.cafe = cafe;
 	}
 
 	public void setTitle(String title) {

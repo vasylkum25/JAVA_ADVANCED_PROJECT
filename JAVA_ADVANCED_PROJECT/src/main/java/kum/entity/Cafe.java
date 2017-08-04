@@ -51,6 +51,16 @@ public class Cafe extends AbstractEntity {
 	@OneToMany(mappedBy="cafe")
 	private List<kum.entity.Table> tables= new ArrayList<>();
 	
+	@OneToMany(mappedBy = "cafe")
+	private List<Meal> meals = new ArrayList<>();
+	
+	
+	public List<Meal> getMeals() {
+		return meals;
+	}
+	public void setMeals(List<Meal> meals) {
+		this.meals = meals;
+	}
 	public BigDecimal getRate() {
 		return rate;
 	}
