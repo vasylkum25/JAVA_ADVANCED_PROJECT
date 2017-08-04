@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="open_close")
-public class OpenClose {
+public class OpenClose extends AbstractEntity {
 
 	
 	@OneToMany(mappedBy = "open")

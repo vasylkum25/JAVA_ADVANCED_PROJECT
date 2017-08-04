@@ -1,6 +1,8 @@
 package kum.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -44,6 +47,9 @@ public class Cafe extends AbstractEntity {
 	private OpenClose open;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private OpenClose close;
+	
+	@OneToMany(mappedBy="cafe")
+	private List<kum.entity.Table> tables= new ArrayList<>();
 	
 	public BigDecimal getRate() {
 		return rate;
@@ -117,5 +123,12 @@ public class Cafe extends AbstractEntity {
 	public void setClose(OpenClose close) {
 		this.close = close;
 	}
+	public List<kum.entity.Table> getTables() {
+		return tables;
+	}
+	public void setTables(List<kum.entity.Table> tables) {
+		this.tables = tables;
+	}
+	
 
 }
