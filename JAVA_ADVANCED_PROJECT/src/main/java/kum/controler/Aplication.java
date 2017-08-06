@@ -1,6 +1,8 @@
 package kum.controler;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import javax.persistence.Persistence;
 import kum.entity.Cafe;
 import kum.entity.OpenClose;
 import kum.entity.Type;
+import kum.model.view.CafeView;
 
 public class Aplication {
 
@@ -23,6 +26,7 @@ public class Aplication {
 			System.out.println("2. Selekt entity;");
 			System.out.println("3. Update Cafe;");
 			System.out.println("4. Delet Cafe for id;");
+			System.out.println("5. Search cafe for time");
 			switch (sc.next()) {
 			case "1":
 				selectEntity(factory, sc);
@@ -35,6 +39,9 @@ public class Aplication {
 				break;
 			case "4":
 				removeCafe(factory, sc);
+				break;
+			case "5":
+				searchCafewithTime(factory, sc);
 				break;
 
 			default:
@@ -222,6 +229,25 @@ public class Aplication {
     em.remove(cafe);
    em.getTransaction().commit();
    em.close();
+		
+		
+		
+	}
+	
+	public void searchCafewithTime(EntityManagerFactory factory, Scanner sc){
+		
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		System.out.println("Enter open time houer: ");
+		int h = sc.nextInt();
+		System.out.println("Enter open time minute: ");
+		int m = sc.nextInt();
+		List<CafeView> views = em.createQuery("SELECT new kum.model.view.CafeView(c.id, c.rate, c.name, c.photoUrl, c.version, c.address, c.fullDescription, c.type, c.phone, c.email, open.time, close.time) FROM Cafe c JOIN c.open open JOIN c.close close WHERE open.time=?1 ", CafeView.class)
+				.setParameter(1, LocalTime.of(h, m))
+				.getResultList();		
+		em.getTransaction().commit();
+		em.close();
+		views.forEach(c->System.out.println(c.getName()+" "+c.getOpen()));
 		
 		
 		
