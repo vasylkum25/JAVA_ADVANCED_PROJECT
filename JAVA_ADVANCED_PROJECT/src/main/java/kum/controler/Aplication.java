@@ -27,6 +27,7 @@ public class Aplication {
 			System.out.println("3. Update Cafe;");
 			System.out.println("4. Delet Cafe for id;");
 			System.out.println("5. Search cafe for time");
+			System.out.println("6. Search cafe for name");
 			switch (sc.next()) {
 			case "1":
 				selectEntity(factory, sc);
@@ -42,6 +43,9 @@ public class Aplication {
 				break;
 			case "5":
 				searchCafewithTime(factory, sc);
+				break;
+			case "6":
+				searchCafeForFirstLetter(factory, sc);
 				break;
 
 			default:
@@ -251,6 +255,19 @@ public class Aplication {
 		
 		
 		
+	}
+	
+	public void searchCafeForFirstLetter(EntityManagerFactory factory, Scanner sc){
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		List<Cafe> cafes = em.createQuery("SELECT c FROM Cafe c WHERE c.name LIKE :name", Cafe.class)
+				.setParameter("name", "N%")
+				.getResultList();
+		em.getTransaction().commit();
+		em.close();
+		for (Cafe cafe : cafes) {
+			System.out.println(cafe.getName());
+		}
 	}
 
 }

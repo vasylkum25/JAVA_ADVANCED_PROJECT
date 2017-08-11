@@ -56,34 +56,34 @@ public class Main {
 //		List<CafeView> views = em.createQuery(" SELECT new kum.model.view.CafeView(c.id, c.rate, c.name, c.photoUrl, c.version, c.address, c.fullDescription, c.type, c.phone, c.email, open.time, close.time) FROM Cafe c JOIN c.open open JOIN c.close close WHERE open.time=?1 ", CafeView.class)
 //				.setParameter(1, LocalTime.of(10, 0))
 //				.getResultList();
-//		new Menu().run();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<CafeView> cq = cb.createQuery(CafeView.class);
-		Root<Cafe> root = cq.from(Cafe.class);
-		Join<Cafe, OpenClose> closeJoin = root.join("close");
-		Join<Cafe, OpenClose> openJoin = root.join("open");
-		cq.multiselect(root.get("id"),
-				root.get("rate"),
-				root.get("name"),
-				root.get("photoUrl"),
-				root.get("version"),
-				root.get("address"),
-				root.get("fullDescription"),
-				root.get("type"),
-				root.get("phone"),
-				root.get("email"),
-				openJoin.get("time"),
-				closeJoin.get("time"));
-		Predicate ratePredicate =cb.ge(root.get("rate"), new BigDecimal("4"));
-		Predicate typePredicate =  cb.equal(root.get("type"), Type.CAFE);
-		Predicate phonePredicate =  cb.like(root.get("phone"), "+380%"); 
-		Predicate closePredicate = closeJoin.get("time").in(Arrays.asList(LocalTime.of(10,0),LocalTime.of(9,0),LocalTime.of(11,0)));
+				Menu.run();
+//		CriteriaBuilder cb = em.getCriteriaBuilder();
+//		CriteriaQuery<CafeView> cq = cb.createQuery(CafeView.class);
+//		Root<Cafe> root = cq.from(Cafe.class);
+//		Join<Cafe, OpenClose> closeJoin = root.join("close");
+//		Join<Cafe, OpenClose> openJoin = root.join("open");
+//		cq.multiselect(root.get("id"),
+//				root.get("rate"),
+//				root.get("name"),
+//				root.get("photoUrl"),
+//				root.get("version"),
+//				root.get("address"),
+//				root.get("fullDescription"),
+//				root.get("type"),
+//				root.get("phone"),
+//				root.get("email"),
+//				openJoin.get("time"),
+//				closeJoin.get("time"));
+//		Predicate ratePredicate =cb.ge(root.get("rate"), new BigDecimal("4"));
+//		Predicate typePredicate =  cb.equal(root.get("type"), Type.CAFE);
+//		Predicate phonePredicate =  cb.like(root.get("phone"), "+380%"); 
+//		Predicate closePredicate = closeJoin.get("time").in(Arrays.asList(LocalTime.of(10,0),LocalTime.of(9,0),LocalTime.of(11,0)));
 //		root.fetch("close");
-		Predicate and = cb.and(ratePredicate, typePredicate, phonePredicate, closePredicate);
-		cq.where(and);
-		List<CafeView> cafes  = em.createQuery(cq).getResultList();
-		System.out.println(cafes);
-		
+//		Predicate and = cb.and(ratePredicate, typePredicate, phonePredicate, closePredicate);
+//		cq.where(and);
+//		List<CafeView> cafes  = em.createQuery(cq).getResultList();
+//		System.out.println(cafes);
+//		
 		em.getTransaction().commit();
  		em.close();
 //		cafes.forEach(c->System.out.println(c.getOpen().getTime()));
