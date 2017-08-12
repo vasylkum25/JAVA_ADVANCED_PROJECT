@@ -18,6 +18,7 @@ public class Menu {
 			System.out.println("Enter 2 to update Entity");
 			System.out.println("Enter 3 to delete Entity");
 			System.out.println("Enter 4 to use other function");
+			System.out.println("Enter 5 meal ingredient");
 			switch (sc.next()) {
 			case "1":
 				new InsertTable().run(factory, sc);
@@ -32,6 +33,9 @@ public class Menu {
 			case "4":
 				CafeSelectJoinAndAgregat.run(factory, sc);
 				
+				break;
+			case "5":
+				MealSelectJoinAndAgregat.run(factory, sc);	
 				break;
 
 			default:

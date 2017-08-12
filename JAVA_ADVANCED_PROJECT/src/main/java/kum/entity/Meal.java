@@ -31,7 +31,7 @@ public class Meal extends AbstractEntity {
 	
 	private int weight;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany
 	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	@ManyToMany(mappedBy = "meals")
@@ -118,6 +118,12 @@ public class Meal extends AbstractEntity {
 
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+
+	@Override
+	public String toString() {
+		return "Meal [title=" + title + ", description=" + description + ", price=" + price + ", cuisine=" + cuisine.getName()
+				+ ", weight=" + weight + ", orders=" + orders + ", cafe=" + cafe + "]";
 	}
 	
 }

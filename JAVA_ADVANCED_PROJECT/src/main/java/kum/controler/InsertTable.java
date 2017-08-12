@@ -154,7 +154,7 @@ public class InsertTable {
 		System.out.println("Enter price: ");
 		meal.setPrice(sc.nextBigDecimal());
 		System.out.println("Enter discription: ");
-		meal.setDescription((String.valueOf(sc.next())).replaceAll("-", " "));
+		meal.setDescription((String.valueOf(sc.next())).replaceAll("_", " "));
 		System.out.println("Enter id of cuisine: ");
 		meal.setCuisine(em.find(Cuisine.class, sc.nextInt()));
 		System.out.println("Enter id of cafe: ");
